@@ -11,8 +11,8 @@ public class DebugExercise2 {
         /* If you're stepping into this function, click the
            step out button because you're not going to learn anything. */
         int z = ~(b - a) >> 31;
-
-        int max = b & w | a & z;
+        //if b > a, w = 0, z = 1; if b < a, w = 1, z = 0.
+        int max = b & z | a & w;
         return max;
     }
 
@@ -58,7 +58,7 @@ public class DebugExercise2 {
         int i = 0;
         int sum = 0;
         while (i < x.length) {
-            sum = sum + add(sum, x[i]);
+            sum = add(sum, x[i]);
             i = i + 1;
         }
         return sum;
@@ -76,8 +76,8 @@ public class DebugExercise2 {
 
 
     public static void main(String[] args) {
-        int[] a = {1, 11, -1, -11};
-        int[] b = {3, -3, 2, -1};
+        int[] a = {2, 0 , 10, 14};
+        int[] b = {-5, 5, 20, 30};
 
         int sumOfElementwiseMaxes = sumOfElementwiseMaxes(a, b);
         System.out.println(sumOfElementwiseMaxes);

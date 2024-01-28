@@ -135,4 +135,19 @@ public class ArrayDequeTest {
 
 
     }
+
+    @Test
+    public void ADbasicTest() {
+        ArrayDeque<Integer> arr = new ArrayDeque<>();
+        arr.addFirst(5);
+        arr.addLast(4);
+        arr.addLast(3);
+        arr.removeFirst();
+        arr.removeLast();
+        arr.addLast(3);
+        arr.removeFirst();
+        arr.addLast(2);
+        arr.addLast(1);
+        arr.printDeque();
+    }
 }

@@ -114,13 +114,13 @@ public class ArrayDeque<T> {
            // upsize
             T[] array = (T[]) new Object[items.length * 2];
             int j = 0;
-            for (int i = check(nextfront + 1); i < nextback; i = check(i + 1)){
-                array[j] = items[i];
+            while (j < items.length) {
+                array[j] = items[check(nextfront + 1 + j)];
                 j = j + 1;
             }
             items = array;
             nextfront = items.length - 1;
-            nextback = j;
+            nextback = j - 1;
         } else if (R > 0 && R < 0.25){
             // downsize
             T[] array = (T[]) new Object[items.length / 2];

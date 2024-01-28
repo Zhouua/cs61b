@@ -28,8 +28,8 @@ public class LinkedListDeque<T> {
         sentinel = new Node(null, null, null);
         sentinel.pre = sentinel;
         sentinel.next = sentinel;
-        size = other.size();
-        for (int i = 0; i < size; i++) {
+        size = 0;
+        for (int i = 0; i < other.size(); i++) {
             addLast((T) other.get(i));
         }
 

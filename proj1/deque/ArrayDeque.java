@@ -9,7 +9,13 @@ public class ArrayDeque<T> {
 
     /** Creates a deep copy of other. */
     public ArrayDeque(ArrayDeque other){
-
+        items = (T[]) new Object[8];
+        size = 0;
+        nextfront = 0;
+        nextback = 1;
+        for (int i = 0; i < other.size(); i++){
+            addLast((T) other.get(i));
+        }
     }
 
     /** Creates an empty array deque. */

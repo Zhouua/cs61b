@@ -1,5 +1,7 @@
 package deque;
 
+import java.util.Iterator;
+
 public class ArrayDeque<T> {
     private T[] items;
     private int size;
@@ -135,5 +137,34 @@ public class ArrayDeque<T> {
         } else {
             return;
         }
+    }
+
+    /** The Deque objects we’ll make are iterable. */
+    public Iterator<T> iterator() {
+        return new myIterator();
+    }
+    private class myIterator implements Iterator<T> {
+        private int pos = 0;
+        public boolean hasNext() {
+            return pos < size;
+        }
+        public T next() {
+            T returnvalue = items[pos];
+            pos = pos + 1;
+            return returnvalue;
+        }
+    }
+
+    /** Returns the parameter o is equal to the Deque. */
+    public boolean equals(Object o) {
+        if (o == null) return false;
+        if (o == this) return true;
+        if (o.getClass() != this.getClass()) return false;
+        ArrayDeque<T> other = (ArrayDeque<T>) o;
+        if (other.size() != this.size()) return false;
+        for (int i = 0; i < this.size(); i += 1) {
+            if (other.get(i) != this.get(i)) return false;
+        }
+        return true;
     }
 }

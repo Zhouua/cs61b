@@ -2,7 +2,7 @@ package deque;
 
 import java.util.Iterator;
 
-public class LinkedListDeque<T> {
+public class LinkedListDeque<T> implements Deque<T> {
     private class Node{
         public T item;
         public Node pre;
@@ -34,28 +34,25 @@ public class LinkedListDeque<T> {
         for (int i = 0; i < other.size(); i++) {
             addLast((T) other.get(i));
         }
-
     }
 
     /** Adds an item of type T to the front of the deque. */
+    @Override
     public void addFirst(T item){
         sentinel.next = new Node(sentinel, item, sentinel.next);
         size = size + 1;
     }
 
     /** Adds an item of type T to the back of the deque. */
+    @Override
     public void addLast(T item){
         sentinel.pre.next = new Node(sentinel.pre, item, sentinel);
         sentinel.pre = sentinel.pre.next;
         size = size + 1;
     }
 
-    /** Returns true if deque is empty, false otherwise. */
-    public boolean isEmpty(){
-        return size == 0;
-    }
-
     /** Returns the number of items in the deque. */
+    @Override
     public int size(){
         return size;
     }
@@ -63,6 +60,7 @@ public class LinkedListDeque<T> {
     /** Prints the items in the deque from first to last, separated by a space.
      * Once all the items have been printed,print out a new line.
      */
+    @Override
     public void printDeque(){
         Node p = sentinel.next;
         while(p != sentinel){
@@ -79,6 +77,7 @@ public class LinkedListDeque<T> {
     /** Removes and returns the item at the front of the deque.
      * If no such item exists, returns null.
      */
+    @Override
     public T removeFirst(){
         if (size == 0) {
             return null;
@@ -94,6 +93,7 @@ public class LinkedListDeque<T> {
     /** Removes and returns the item at the back of the deque.
      * If no such item exists, returns null.
      */
+    @Override
     public T removeLast(){
         if (size == 0){
             return null;
@@ -111,6 +111,7 @@ public class LinkedListDeque<T> {
      * If no such item exists, returns null.
      * Must not alter the deque!
      */
+    @Override
     public T get(int index){
         if (size == 0){
             return null;

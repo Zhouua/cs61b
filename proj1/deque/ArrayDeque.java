@@ -2,7 +2,7 @@ package deque;
 
 import java.util.Iterator;
 
-public class ArrayDeque<T> {
+public class ArrayDeque<T> implements Deque<T> {
     private T[] items;
     private int size;
     private int nextfront;
@@ -40,6 +40,7 @@ public class ArrayDeque<T> {
     }
 
     /** Adds an item of type T to the front of the deque. */
+    @Override
     public void addFirst(T i){
         items[nextfront] = i;
         nextfront = check(nextfront - 1);
@@ -48,6 +49,7 @@ public class ArrayDeque<T> {
     }
 
     /** Adds an item of type T to the back of the deque. */
+    @Override
     public void addLast(T i){
         items[nextback] = i;
         nextback = check(nextback + 1);
@@ -56,16 +58,19 @@ public class ArrayDeque<T> {
     }
 
     /** Returns true if deque is empty, false otherwise. */
+    @Override
     public boolean isEmpty(){
         return size == 0;
     }
 
     /** Returns the size of the deque. */
+    @Override
     public int size(){
         return size;
     }
 
     /** Prints the items in the deque. */
+    @Override
     public void printDeque(){
         for (int i = check(nextfront + 1); i < nextback; i = check(i + 1)){
             if (i == check(nextfront + 1)) System.out.print(items[i]);
@@ -76,6 +81,7 @@ public class ArrayDeque<T> {
     /** Removes and returns the item at the front of the deque.
      * If no such item exists, returns null.
      */
+    @Override
     public T removeFirst(){
         if (size == 0) return null;
         T item = items[check(nextfront + 1)];
@@ -89,6 +95,7 @@ public class ArrayDeque<T> {
     /** Removes and returns the item at the back of the deque.
      * If no such item exists, returns null.
      */
+    @Override
     public T removeLast(){
         if (size == 0) return null;
         T item = items[check(nextback - 1)];
@@ -100,6 +107,7 @@ public class ArrayDeque<T> {
     }
 
     /** Gets the item at the given index. */
+    @Override
     public T get(int index){
         for (int i = check(nextfront + 1);; i = check(i + 1)){
             if (index == 0) {

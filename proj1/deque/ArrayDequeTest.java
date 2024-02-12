@@ -139,15 +139,17 @@ public class ArrayDequeTest {
     @Test
     public void ADbasicTest() {
         ArrayDeque<Integer> arr = new ArrayDeque<>();
-        arr.addFirst(5);
-        arr.addLast(4);
-        arr.addLast(3);
-        arr.removeFirst();
-        arr.removeLast();
-        arr.addLast(3);
-        arr.removeFirst();
-        arr.addLast(2);
         arr.addLast(1);
-        arr.printDeque();
+        arr.addLast(2);
+        arr.addLast(3);
+        int expected1 = 3;
+        int actual1 = arr.removeLast();
+        int expected2 = 2;
+        int actual2 = arr.removeLast();
+        int expected3 = 1;
+        int actual3 = arr.removeLast();
+        assertEquals(expected1, actual1);
+        assertEquals(expected2, actual2);
+        assertEquals(expected3, actual3);
     }
 }

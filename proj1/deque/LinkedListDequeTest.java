@@ -146,4 +146,18 @@ public class LinkedListDequeTest {
         Assert.assertEquals(expeceted, actual);
     }
 
+    @Test
+    public void equalsTest() {
+        LinkedListDeque<Integer> LD = new LinkedListDeque<>();
+        ArrayDeque<Integer> AD = new ArrayDeque<>();
+        LD.addFirst(1);
+        LD.addFirst(2);
+        LD.addLast(3);
+        AD.addFirst(1);
+        AD.addFirst(2);
+        AD.addLast(3);
+        boolean f = LD.equals(AD);
+        Assert.assertTrue(f);
+    }
+
 }

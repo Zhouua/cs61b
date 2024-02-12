@@ -86,7 +86,9 @@ public class ArrayDeque<T> implements Deque<T> {
      */
     @Override
     public T removeFirst() {
-        if (size == 0) return null;
+        if (size == 0) {
+            return null;
+        }
         T item = items[check(nextfront + 1)];
         items[check(nextfront + 1)] = null;
         nextfront = check(nextfront + 1);
@@ -114,7 +116,7 @@ public class ArrayDeque<T> implements Deque<T> {
     /** Gets the item at the given index. */
     @Override
     public T get(int index) {
-        for (int i = check(nextfront + 1);; i = check(i + 1)){
+        for (int i = check(nextfront + 1);; i = check(i + 1)) {
             if (index == 0) {
                 return items[i];
             }
@@ -140,7 +142,7 @@ public class ArrayDeque<T> implements Deque<T> {
             // downsize
             T[] array = (T[]) new Object[items.length / 2];
             int j = 0;
-            for (int i = check(nextfront + 1); i < nextback; i = check(i + 1)){
+            for (int i = check(nextfront + 1); i < nextback; i = check(i + 1)) {
                 array[j] = items[i];
                 j = j + 1;
             }
@@ -154,9 +156,9 @@ public class ArrayDeque<T> implements Deque<T> {
 
     /** The Deque objects we’ll make are iterable. */
     public Iterator<T> iterator() {
-        return new myIterator();
+        return new MyIterator();
     }
-    private class myIterator implements Iterator<T> {
+    private class MyIterator implements Iterator<T> {
         private int pos = 0;
         public boolean hasNext() {
             return pos < size;

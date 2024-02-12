@@ -3,7 +3,7 @@ package deque;
 import java.util.Iterator;
 
 public class LinkedListDeque<T> implements Deque<T> {
-    private class Node{
+    private class Node {
         private T item;
         private Node pre;
         private Node next;
@@ -40,6 +40,7 @@ public class LinkedListDeque<T> implements Deque<T> {
     @Override
     public void addFirst(T item) {
         sentinel.next = new Node(sentinel, item, sentinel.next);
+        sentinel.next.next.pre = sentinel.next;
         size = size + 1;
     }
 
@@ -82,11 +83,11 @@ public class LinkedListDeque<T> implements Deque<T> {
         if (size == 0) {
             return null;
         } else {
-           T ritem = sentinel.next.item;
-           sentinel.next = sentinel.next.next;
-           sentinel.next.pre = sentinel;
-           size = size - 1;
-           return ritem;
+            T ritem = sentinel.next.item;
+            sentinel.next = sentinel.next.next;
+            sentinel.next.pre = sentinel;
+            size = size - 1;
+            return ritem;
         }
     }
 
@@ -113,7 +114,7 @@ public class LinkedListDeque<T> implements Deque<T> {
      */
     @Override
     public T get(int index) {
-        if (size == 0){
+        if (size == 0) {
             return null;
         }
         Node p = sentinel.next;
@@ -126,7 +127,7 @@ public class LinkedListDeque<T> implements Deque<T> {
 
     /** Uses recursion to get the item at the given index. */
     private T getRecursive(int index, Node p) {
-        if (index == 0){
+        if (index == 0) {
             return p.item;
         }
         return getRecursive(index - 1, p.next);
@@ -140,12 +141,12 @@ public class LinkedListDeque<T> implements Deque<T> {
 
     /** The Deque objects we’ll make are iterable. */
     public Iterator<T> iterator() {
-        return new myIterator();
+        return new MyIterator();
     }
 
-    private class myIterator implements Iterator<T> {
+    private class MyIterator implements Iterator<T> {
         private Node pos;
-        public myIterator() {
+        MyIterator() {
             pos = sentinel.next;
         }
         public T next() {
